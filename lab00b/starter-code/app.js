@@ -108,7 +108,7 @@ console.log('Hello from the new object function', newObject(['hi', 'hello', 'are
 
 
 
-let sum = function(a, b, c, d) {
+const sum = (a, b, c, d) => {
   return a + b + c + d;
 };
 
@@ -116,7 +116,7 @@ let sum = function(a, b, c, d) {
 console.log(sum(1, 2, 3, 4));
 
 
-let objectLit = function() {
+const objectLit = () => {
   return {
     key1: 'value1',
     key2: 'value2',
@@ -128,7 +128,7 @@ let objectLit = function() {
 console.log(objectLit());
 
 
-let sumAndProduct = function(a, b) {
+const sumAndProduct = (a, b) => {
   let sum = a + b;
   let product = a * b;
   return [sum, product];
@@ -138,7 +138,7 @@ let sumAndProduct = function(a, b) {
 console.log(sumAndProduct(3, 9));
 
 
-let message = function(name) {
+const message = (name) => {
   return `Hello, ${name}!`;
 };
 
@@ -156,9 +156,11 @@ let joe = new Student('Joe', 'Schmoe', 100);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this code to break!
+// There is error. It said Student is not a constructor. Possible error is let joe = new Student. Change let to const. It still not work. I changed it back to let from const. 
 console.log(joe);
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
+// I changed const to let to make function work! 
 
 
 
@@ -171,10 +173,11 @@ Student.prototype.greeting = function() {
 console.log(joe.greeting());
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
+// Arrow function will not work with this
 
 
 
-Student.courseName = function() {
+Student.courseName = () => {
   return 'This student is enrolled in Code 301.';
 };
 
@@ -191,15 +194,17 @@ Student.prototype.scope = function() {
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 console.log(joe.scope());
+//Why it is undefined?? on line 196
 
 Student.prototype.scopeArrow = () => console.log(this);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 console.log(joe.scopeArrow());
+//It appears to say Window (postMessage..blah blah..)
 
 // TODO: Write a COMMENT below to answer the following questions.
 // 1. What is "this" when joe.scope() is invoked?
-// undefined
+// undefined AND arrrow will not work with this. That's why it's undefined
 // 2. What is "this" when joe.scopeArrow() is invoked?
 //It appears to say Window (postMessage: f, blur: f. focus: f, close: f. parent Window, )
 // 3. Explain why "this" is different when an arrow function is used.
